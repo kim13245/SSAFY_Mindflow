@@ -1,0 +1,37 @@
+spring:
+  profiles:
+    include: dotenv
+    active: dev
+  mail:
+    host: ${SMTP_HOST}
+    port: ${SMTP_PORT}
+    username: ${SMTP_USERNAME}
+    password: ${SMTP_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: ${SMTP_AUTH}
+          ssl:
+            enable: ${SMTP_SSL_ENABLE}
+  application:
+    name: mindflow_server
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+mail:
+  sender:
+    address: ${MAIL_SENDER_ADDRESS}
+
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: 3600000 # 1시간 (밀리초 단위)
+  refresh:
+    expiration: 1296000000 # 15일 (밀리초 단위)
+
+logging:
+  level:
+    root: INFO
+    com.swissclassic.mindflow_server: DEBUG

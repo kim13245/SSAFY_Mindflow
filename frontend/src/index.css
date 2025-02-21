@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 웹킷 기반 브라우저용 스크롤바 스타일링 */
+::-webkit-scrollbar {
+  width: 6px; /* 스크롤바의 너비 */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* 스크롤바 트랙 배경 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1; /* 스크롤바 색상 */
+  border-radius: 3px; /* 스크롤바 모서리 둥글게 */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8; /* 호버시 스크롤바 색상 */
+}

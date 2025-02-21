@@ -1,0 +1,27 @@
+/* styles.css */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* main 요소가 전체 높이를 차지하도록 설정 */
+main {
+  height: 100%;
+  background-color: white;
+}
+
+.disabled-container {
+  pointer-events: none; /* 모든 클릭 이벤트를 막는 클래스스 */
+  opacity: 0.5; /* 시각적으로 비활성화된 것처럼 보이게 함 */
+}
+
+button:disabled {
+  cursor: not-allowed; /* 기본 금지 커서 */
+}
+
+button:disabled:hover {
+  cursor: default; /* disabled 속성 기본 커서로 변경 */
+}

@@ -1,0 +1,974 @@
+{
+  "mindmap": {
+    "accountId": "user123",
+    "data": {
+      "nodes": [
+        {
+          "content": "장미과에 속하는 다년생 초본식물로, 달콤하고 새콤한 맛이 특징인 과일",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:0",
+          "mongo_ref": "5e4f919c-f11a-4bb9-ac70-e5f088af7445",
+          "title": "딸기",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "비타민C가 풍부하고 항산화 물질인 안토시아닌이 포함되어 건강에 좋음",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:1",
+          "mongo_ref": "4221fce2-6f72-41a2-bfef-78090fdefeaf",
+          "title": "영양 성분",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "봄철 대표적인 과일로, 전 세계적으로 인기 있는 과일",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:2",
+          "mongo_ref": "ef92b3b8-d5f9-48ef-9ae3-e71e547bcfaa",
+          "title": "특징",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "생과일로 먹거나 잼, 주스, 디저트 등 다양한 요리에 활용",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:3",
+          "mongo_ref": "377a86f1-78aa-475a-b21b-46aaba335c56",
+          "title": "활용 방법",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "대표적인 품종으로는 설향, 매향, 죽향 등이 있음",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:4",
+          "mongo_ref": "43676a89-c991-4334-8dc6-9f63b24c4b5b",
+          "title": "품종",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "비타민 C는 수용성 비타민의 일종으로, 다음과 같은 특징이 있습니다:",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:5",
+          "mongo_ref": "ff980787-efa3-4bad-a1ff-5993f6ca2e71",
+          "title": "비타민 C",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "체내에서 합성되지 않아 음식으로 섭취해야 함",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:6",
+          "mongo_ref": "338f3ed7-e045-4387-a111-cd7ee37157bd",
+          "title": "섭취 특성",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "항산화 작용으로 노화 방지와 면역력 강화에 도움",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:7",
+          "mongo_ref": "b431da78-42b8-45d1-96a6-f9592bce68cf",
+          "title": "주요 기능",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "콜라겐 합성을 촉진하여 피부 건강에 기여",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:8",
+          "mongo_ref": "fb60ab85-c940-401f-b401-362e3c237d09",
+          "title": "피부 건강",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "철분 흡수를 돕고 상처 치유를 촉진",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:9",
+          "mongo_ref": "65908c2c-5fe2-4c3a-9848-89716d250a21",
+          "title": "철분 흡수",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "감귤류, 키위, 브로콜리 등의 과일과 채소에 많이 함유",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:10",
+          "mongo_ref": "ab949d98-446e-46bd-b8d8-c1cf60112701",
+          "title": "함유 식품",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "공룡은 중생대(2억 5천만 년 전 ~ 6천만 년 전)에 지구상에서 번성했던 파충류의 일종입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:11",
+          "mongo_ref": "7f3870d1-48a4-4e98-873a-ea0454876dfc",
+          "title": "공룡",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "크게 수각류(공룡의 왕 티라노사우루스 등), 용각류(트리케라톱스 등), 조각류(시조새 등), 수장류(브라키오사우루스 등) 등으로 분류됩니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:12",
+          "mongo_ref": "7f3870d1-48a4-4e98-873a-ea0454876dfc",
+          "title": "분류",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "공룡들은 육식, 초식 등 다양한 식성을 가졌고, 크기도 닭만한 것부터 건물만한 것까지 매우 다양했습니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:13",
+          "mongo_ref": "ff65eec8-cc23-418f-ad1c-724b8829152b",
+          "title": "특징",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "최근 화석 발굴과 연구를 통해 공룡들의 피부색, 생활습관, 사회성 등이 밝혀지고 있으며, 과거 생각했던 것보다 훨씬 지능이 높고 발달된 생물이었다는 것이 밝혀지고 있습니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:14",
+          "mongo_ref": "5acb99ec-c168-4979-b3f9-97fa5f6d9d43",
+          "title": "최근 연구 발견",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "고생물학자들은 지속적인 연구를 통해 새로운 공룡 종을 발견하고 있으며, 이를 통해 지구의 과거 생태계와 진화의 과정을 이해하는데 큰 도움을 얻고 있습니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:15",
+          "mongo_ref": "37aa3b4f-6185-4444-a630-f1615ceaac82",
+          "title": "현대적 의의",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "화석(Fossil)은 과거에 살았던 생물의 유해나 흔적이 지층 속에 보존된 것입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:16",
+          "mongo_ref": "81e749ae-062e-4cdd-b1cb-012bf601f001",
+          "title": "화석",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "생물이 죽은 후 퇴적물에 묻혀 오랜 시간에 걸쳐 암석화 되는 과정을 거칩니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:17",
+          "mongo_ref": "a4364739-fdba-4dfc-a84e-8ca583de6a86",
+          "title": "형성 과정",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "화석이 되기 위해서는 빠른 매몰, 경화 조직 존재, 산소와의 차단 등의 조건이 필요합니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:18",
+          "mongo_ref": "8439407e-d52b-4165-bca3-1448c4d13ed8",
+          "title": "형성 조건",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "화석을 통해 과거 생물의 모습, 진화 과정, 당시의 환경 등을 연구할 수 있습니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:19",
+          "mongo_ref": "bf0f6f76-98e4-4513-85ef-63e7a71937c3",
+          "title": "연구 가치",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "화석은 지질 시대를 구분하고 연대를 측정하는 중요한 도구로도 사용됩니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:20",
+          "mongo_ref": "da562754-eebe-40e8-8b0e-c900e241c05c",
+          "title": "활용",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "딸기는 장미과에 속하는 다년생 작물로, 선명한 붉은색과 달콤한 맛이 특징인 과일입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:21",
+          "mongo_ref": "7da26708-b271-497c-9ecc-42b1b75395af",
+          "title": "기본 설명",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "비타민C가 풍부하고 항산화 물질인 안토시아닌을 다량 함유하고 있어 건강에 좋습니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:22",
+          "mongo_ref": "8eac8fac-d1ba-47a3-897b-82600693a841",
+          "title": "영양",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "생과일로 먹거나 잼, 주스 등 다양한 가공식품의 원료로 사용됩니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:23",
+          "mongo_ref": "cc255aa2-9209-4f30-bbdd-92e4f337e7d5",
+          "title": "활용",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "우리나라에서는 주로 12월부터 이듬해 5월까지 시설재배로 생산되며, 설향, 매향 등 다양한 품종이 있습니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:24",
+          "mongo_ref": "ad435ac2-6907-4761-a21b-c34c1a6e7d76",
+          "title": "재배",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "딸기는 전 세계적으로 인기 있는 과일 중 하나로, 디저트나 장식용으로도 널리 사용됩니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:25",
+          "mongo_ref": "ece11531-bd17-4714-9a59-00f73914efa1",
+          "title": "인기도",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "일본의 만화가 오다 에이치로가 창작한 해적 모험 만화로, 1997년부터 연재 중입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:26",
+          "mongo_ref": "cc362c2f-c75c-4f73-9e09-43097affb4cc",
+          "title": "원피스",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "주인공 몽키 D. 루피가 해적왕이 되기 위해 동료들과 함께 항해하는 이야기를 다룹니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:27",
+          "mongo_ref": "2ed7e8fc-d763-4d66-a865-ba0e17735cb8",
+          "title": "줄거리",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "악마의 열매를 먹어 고무처럼 몸을 늘릴 수 있는 능력을 가진 루피와 그의 밀짚모자 해적단의 모험이 중심 내용입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:28",
+          "mongo_ref": "b8aab20e-0312-4fac-a984-7a2aa74abcf4",
+          "title": "주요 인물",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "현재까지 전 세계적으로 5억부 이상 판매되어 세계에서 가장 많이 팔린 만화 중 하나입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:29",
+          "mongo_ref": "d5778c4a-24e6-4659-83a9-1611883d04fd",
+          "title": "성공",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "만화를 원작으로 한 애니메이션, 영화, 게임 등 다양한 미디어 콘텐츠로도 제작되었습니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:30",
+          "mongo_ref": "aa8d9cd1-0755-4c43-aa48-b2b7cdbffc85",
+          "title": "미디어 믹스",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "커피는 커피나무의 열매를 볶아서 만드는 음료입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:31",
+          "mongo_ref": "b1234567-89ab-cdef-0123-456789abcdef",
+          "title": "커피",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "아라비카와 로부스타가 대표적인 품종입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:32",
+          "mongo_ref": "c1234567-89ab-cdef-0123-456789abcdef",
+          "title": "품종",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "에스프레소, 아메리카노, 카페라떼 등 다양한 음료로 즐깁니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:33",
+          "mongo_ref": "d1234567-89ab-cdef-0123-456789abcdef",
+          "title": "음료 종류",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "카페인이 함유되어 있어 각성 효과가 있습니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:34",
+          "mongo_ref": "e1234567-89ab-cdef-0123-456789abcdef",
+          "title": "특징",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "태양계는 태양과 그 주위를 도는 천체들의 집합입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:35",
+          "mongo_ref": "f1234567-89ab-cdef-0123-456789abcdef",
+          "title": "태양계",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "수성, 금성, 지구, 화성, 목성, 토성, 천왕성, 해왕성 8개의 행성이 있습니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:36",
+          "mongo_ref": "g1234567-89ab-cdef-0123-456789abcdef",
+          "title": "행성",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "소행성, 혜성, 위성 등 다양한 천체가 존재합니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:37",
+          "mongo_ref": "h1234567-89ab-cdef-0123-456789abcdef",
+          "title": "기타 천체",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "태양은 태양계의 중심별로 모든 행성에 중력을 제공합니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:38",
+          "mongo_ref": "i1234567-89ab-cdef-0123-456789abcdef",
+          "title": "태양",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "커피 원두는 로스팅 정도에 따라 라이트, 미디엄, 다크로 구분됩니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:39",
+          "mongo_ref": "j1234567-89ab-cdef-0123-456789abcdef",
+          "title": "로스팅",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "브라질, 콜롬비아, 에티오피아가 주요 커피 생산국입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:40",
+          "mongo_ref": "k1234567-89ab-cdef-0123-456789abcdef",
+          "title": "생산국",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "지구는 태양으로부터 세 번째로 가까운 행성입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:41",
+          "mongo_ref": "l1234567-89ab-cdef-0123-456789abcdef",
+          "title": "지구",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "화성은 붉은 행성으로도 불리며, 인류의 다음 탐사 목표입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:42",
+          "mongo_ref": "m1234567-89ab-cdef-0123-456789abcdef",
+          "title": "화성",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "딸기는 실제로는 과일이 아닌 열매채소로 분류됩니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:43",
+          "mongo_ref": "n1234567-89ab-cdef-0123-456789abcdef",
+          "title": "RELATED_TO",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "딸기는 수정 후 꽃받침이 비대해져 생기는 과육에 열매가 박혀있는 구조입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:44",
+          "mongo_ref": "o1234567-89ab-cdef-0123-456789abcdef",
+          "title": "COMPARE_TO",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "실험용 추가 데이터 입니다다",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:45",
+          "mongo_ref": "m1234567-89ab-cdef-0123-456789abcdef",
+          "title": "HAS_SUBTOPIC",
+          "accountId": "user123",
+          "chatRoomId": "room456",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "인공지능(AI)은 인간의 학습능력과 추론능력, 지각능력, 자연언어의 이해능력 등을 컴퓨터 프로그램으로 실현한 기술입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:46",
+          "mongo_ref": "ai123456-89ab-cdef-0123-456789abcdef",
+          "title": "인공지능",
+          "accountId": "user123",
+          "chatRoomId": "room567",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "머신러닝은 AI의 한 분야로, 데이터로부터 패턴을 학습하여 의사결정을 하는 기술입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:47",
+          "mongo_ref": "ml123456-89ab-cdef-0123-456789abcdef",
+          "title": "머신러닝",
+          "accountId": "user123",
+          "chatRoomId": "room567",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "딥러닝은 인공신경망을 기반으로 하는 머신러닝의 한 방법론입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:48",
+          "mongo_ref": "dl123456-89ab-cdef-0123-456789abcdef",
+          "title": "딥러닝",
+          "accountId": "user123",
+          "chatRoomId": "room567",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "자연어 처리(NLP)는 인간의 언어를 컴퓨터가 이해하고 처리하는 AI 기술입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:49",
+          "mongo_ref": "nlp123456-89ab-cdef-0123-456789abcdef",
+          "title": "자연어처리",
+          "accountId": "user123",
+          "chatRoomId": "room567",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "컴퓨터 비전은 컴퓨터가 디지털 이미지나 비디오를 이해하고 처리하는 기술입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:50",
+          "mongo_ref": "cv123456-89ab-cdef-0123-456789abcdef",
+          "title": "컴퓨터비전",
+          "accountId": "user123",
+          "chatRoomId": "room567",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "우주(Universe)는 시공간과 그 안에 존재하는 모든 물질과 에너지를 포함하는 총체입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:51",
+          "mongo_ref": "space123-89ab-cdef-0123-456789abcdef",
+          "title": "우주",
+          "accountId": "user123",
+          "chatRoomId": "room678",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "은하수(Milky Way)는 우리가 속한 나선 은하로, 약 1,000-4,000억 개의 별을 포함하고 있습니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:52",
+          "mongo_ref": "galaxy123-89ab-cdef-0123-456789abcdef",
+          "title": "은하수",
+          "accountId": "user123",
+          "chatRoomId": "room678",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "블랙홀은 중력이 너무 강해서 빛조차도 빠져나올 수 없는 시공간의 영역입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:53",
+          "mongo_ref": "blackhole123-89ab-cdef-0123-456789abcdef",
+          "title": "블랙홀",
+          "accountId": "user123",
+          "chatRoomId": "room678",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "별(Star)은 수소 핵융합 반응을 통해 스스로 빛과 열을 방출하는 천체입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:54",
+          "mongo_ref": "star123-89ab-cdef-0123-456789abcdef",
+          "title": "별",
+          "accountId": "user123",
+          "chatRoomId": "room678",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "성운(Nebula)은 우주 공간에 퍼져있는 거대한 가스와 먼지 구름입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:55",
+          "mongo_ref": "nebula123-89ab-cdef-0123-456789abcdef",
+          "title": "성운",
+          "accountId": "user123",
+          "chatRoomId": "room678",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "로봇공학은 로봇을 설계, 제작, 운용하는 공학 분야입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:56",
+          "mongo_ref": "robotics123-89ab-cdef-0123-456789abcdef",
+          "title": "로봇공학",
+          "accountId": "user123",
+          "chatRoomId": "room567",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "강화학습은 AI가 시행착오를 통해 최적의 행동을 학습하는 방법입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:57",
+          "mongo_ref": "rl123456-89ab-cdef-0123-456789abcdef",
+          "title": "강화학습",
+          "accountId": "user123",
+          "chatRoomId": "room567",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "빅데이터는 기존 데이터베이스로 처리하기 어려운 대규모 데이터를 의미합니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:58",
+          "mongo_ref": "bigdata123-89ab-cdef-0123-456789abcdef",
+          "title": "빅데이터",
+          "accountId": "user123",
+          "chatRoomId": "room567",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "클라우드 컴퓨팅은 인터넷을 통해 컴퓨팅 리소스를 제공하는 서비스입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:59",
+          "mongo_ref": "cloud123-89ab-cdef-0123-456789abcdef",
+          "title": "클라우드 컴퓨팅",
+          "accountId": "user123",
+          "chatRoomId": "room567",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "사이버 보안은 디지털 시스템과 네트워크를 보호하는 기술입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:60",
+          "mongo_ref": "security123-89ab-cdef-0123-456789abcdef",
+          "title": "사이버 보안",
+          "accountId": "user123",
+          "chatRoomId": "room567",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "외계행성(Exoplanet)은 태양계 밖에 있는 행성을 의미합니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:61",
+          "mongo_ref": "exoplanet123-89ab-cdef-0123-456789abcdef",
+          "title": "외계행성",
+          "accountId": "user123",
+          "chatRoomId": "room678",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "암흑물질은 우주 질량의 대부분을 차지하지만 직접 관측할 수 없는 물질입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:62",
+          "mongo_ref": "darkmatter123-89ab-cdef-0123-456789abcdef",
+          "title": "암흑물질",
+          "accountId": "user123",
+          "chatRoomId": "room678",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "중성자별은 초신성 폭발 후 남은 극도로 밀도가 높은 천체입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:63",
+          "mongo_ref": "neutronstar123-89ab-cdef-0123-456789abcdef",
+          "title": "중성자별",
+          "accountId": "user123",
+          "chatRoomId": "room678",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "우주망원경은 지구 대기의 방해 없이 우주를 관측할 수 있는 장비입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:64",
+          "mongo_ref": "telescope123-89ab-cdef-0123-456789abcdef",
+          "title": "우주망원경",
+          "accountId": "user123",
+          "chatRoomId": "room678",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "초신성은 별이 생을 마감할 때 일으키는 거대한 폭발 현상입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:65",
+          "mongo_ref": "supernova123-89ab-cdef-0123-456789abcdef",
+          "title": "초신성",
+          "accountId": "user123",
+          "chatRoomId": "room678",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "블록체인은 분산 데이터베이스를 기반으로 한 디지털 거래 기술입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:66",
+          "mongo_ref": "blockchain123-89ab-cdef-0123-456789abcdef",
+          "title": "블록체인",
+          "accountId": "user123",
+          "chatRoomId": "room567",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "스마트 계약은 블록체인 상에서 자동으로 실행되는 프로그래밍된 계약입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:67",
+          "mongo_ref": "smartcontract123-89ab-cdef-0123-456789abcdef",
+          "title": "스마트 계약",
+          "accountId": "user123",
+          "chatRoomId": "room567",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "암호화폐는 블록체인 기술을 기반으로 한 디지털 화폐입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:68",
+          "mongo_ref": "crypto123-89ab-cdef-0123-456789abcdef",
+          "title": "암호화폐",
+          "accountId": "user123",
+          "chatRoomId": "room567",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "화성 탐사는 인류의 다음 우주 개척 목표입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:69",
+          "mongo_ref": "marsexploration123-89ab-cdef-0123-456789abcdef",
+          "title": "화성 탐사",
+          "accountId": "user123",
+          "chatRoomId": "room678",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "화성 로버는 화성 표면을 탐사하는 무인 탐사 차량입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:70",
+          "mongo_ref": "marsrover123-89ab-cdef-0123-456789abcdef",
+          "title": "화성 로버",
+          "accountId": "user123",
+          "chatRoomId": "room678",
+          "createdAt": "2024-02-06T10:00:00"
+        },
+        {
+          "content": "화성 기지는 미래 인류의 화성 거주를 위한 기반 시설입니다.",
+          "id": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:71",
+          "mongo_ref": "marsbase123-89ab-cdef-0123-456789abcdef",
+          "title": "화성 기지",
+          "accountId": "user123",
+          "chatRoomId": "room678",
+          "createdAt": "2024-02-06T10:00:00"
+        }
+      ],
+      "relationships": [
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:0",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:1",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:0",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:2",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:0",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:3",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:0",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:4",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:0",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:21",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:0",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:22",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:0",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:23",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:0",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:24",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:0",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:25",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:1",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:5",
+          "type": "RELATED_TO"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:5",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:6",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:5",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:7",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:5",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:8",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:5",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:9",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:5",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:10",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:11",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:16",
+          "type": "RELATED_TO"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:11",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:12",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:11",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:13",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:11",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:14",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:11",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:15",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:16",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:17",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:16",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:19",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:17",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:18",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:19",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:20",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:26",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:27",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:26",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:28",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:26",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:29",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:26",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:30",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:31",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:32",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:31",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:33",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:31",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:34",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:31",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:39",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:31",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:40",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:35",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:36",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:35",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:37",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:35",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:38",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:36",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:41",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:36",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:42",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:42",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:43",
+          "type": "RELATED_TO"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:42",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:44",
+          "type": "COMPARE_TO"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:42",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:45",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:46",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:47",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:47",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:48",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:46",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:49",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:46",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:50",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:51",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:52",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:51",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:53",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:51",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:54",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:51",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:55",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:46",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:56",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:47",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:57",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:46",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:58",
+          "type": "RELATED_TO"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:58",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:59",
+          "type": "RELATED_TO"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:59",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:60",
+          "type": "RELATED_TO"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:51",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:61",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:51",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:62",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:54",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:63",
+          "type": "RELATED_TO"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:51",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:64",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:54",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:65",
+          "type": "RELATED_TO"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:66",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:67",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:66",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:68",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:69",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:70",
+          "type": "HAS_SUBTOPIC"
+        },
+        {
+          "source": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:69",
+          "target": "4:3dc81756-7c5c-4e89-a3b8-02ee1431516d:71",
+          "type": "HAS_SUBTOPIC"
+        }
+      ]
+    }
+  }
+}
