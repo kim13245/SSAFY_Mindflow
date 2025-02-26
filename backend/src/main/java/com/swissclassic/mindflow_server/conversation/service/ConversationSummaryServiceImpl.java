@@ -20,4 +20,12 @@ public class ConversationSummaryServiceImpl implements ConversationSummaryServic
     public void deleteConversationSummaryByChatRoomId(long chatRoomId) {
         repository.deleteByChatRoomId(chatRoomId);
     }
+
+    @Override
+    public ConversationSummary findByChatRoomId(long chatRoomId) {
+        return repository.findByChatRoomId(chatRoomId)
+                .orElse(null);
+    }
+
+
 }

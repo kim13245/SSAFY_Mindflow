@@ -5,7 +5,7 @@ import { store } from "../store/store" // store.js에서 store import
 const BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 
-export const fetchMindmapData = async (chatRoomId = null) => {
+export const fetchMindmapData = async (chatRoomId = null, nodeId = null) => {
   try {
     // Redux store에서 auth 상태 가져오기
     const authState = store.getState().auth
@@ -28,18 +28,71 @@ export const fetchMindmapData = async (chatRoomId = null) => {
     // mindmap 객체에서 data를 추출하고 기본값 설정
     const mindmapData = response.data.data || response.data || { nodes: [], relationships: [] }
 
-    if (chatRoomId && mindmapData.nodes && mindmapData.relationships) {
-      // chatRoomId로 필터링된 데이터 반환
-      return {
-        nodes: mindmapData.nodes.filter((node) => node.chatRoomId === chatRoomId),
-        relationships: mindmapData.relationships.filter((rel) => {
-          const sourceNode = mindmapData.nodes.find((node) => node.id === rel.source)
-          return sourceNode && sourceNode.chatRoomId === chatRoomId
-        }),
+    // 노드 ID가 이상한 경우를 걸러내기
+    const validNodes = mindmapData.nodes.filter(node => node.id && node.id.trim() !== '');
+    const validNodeIds = new Set(validNodes.map(node => node.id));
+
+    // 연결 관계를 통해 누락된 노드 복구
+    mindmapData.relationships.forEach(rel => {
+      if (!validNodeIds.has(rel.source)) {
+        const missingNode = mindmapData.nodes.find(node => node.id === rel.source);
+        if (missingNode) {
+          validNodes.push(missingNode);
+          validNodeIds.add(missingNode.id);
+        }
       }
+      if (!validNodeIds.has(rel.target)) {
+        const missingNode = mindmapData.nodes.find(node => node.id === rel.target);
+        if (missingNode) {
+          validNodes.push(missingNode);
+          validNodeIds.add(missingNode.id);
+        }
+      }
+    });
+
+    // 유효한 노드와 관계로 데이터 구성
+    const validRelationships = mindmapData.relationships.filter(rel => 
+      validNodeIds.has(rel.source) && validNodeIds.has(rel.target)
+    );
+
+    if (nodeId) {
+      // 특정 노드와 연결된 모든 노드 복구
+      const connectedNodes = new Set();
+      const findAllConnectedNodes = (currentId) => {
+        if (connectedNodes.has(currentId)) return;
+        connectedNodes.add(currentId);
+
+        mindmapData.relationships
+          .filter(rel => rel.source === currentId || rel.target === currentId)
+          .forEach(rel => {
+            findAllConnectedNodes(rel.source);
+            findAllConnectedNodes(rel.target);
+          });
+      };
+
+      findAllConnectedNodes(nodeId);
+
+      return {
+        nodes: validNodes.filter(node => connectedNodes.has(node.id)),
+        relationships: validRelationships.filter(rel => 
+          connectedNodes.has(rel.source) && connectedNodes.has(rel.target)
+        )
+      };
+    } else if (chatRoomId) {
+      // 특정 채팅방과 연결된 모든 노드 복구
+      return {
+        nodes: validNodes.filter(node => node.chatRoomId === chatRoomId),
+        relationships: validRelationships.filter(rel => {
+          const sourceNode = validNodes.find(node => node.id === rel.source);
+          return sourceNode && sourceNode.chatRoomId === chatRoomId;
+        }),
+      };
     }
 
-    return mindmapData.nodes && mindmapData.relationships ? mindmapData : { nodes: [], relationships: [] }
+    return {
+      nodes: validNodes,
+      relationships: validRelationships
+    };
   } catch (error) {
     console.error("마인드맵 데이터 가져오기 실패:", error)
     return { nodes: [], relationships: [] }  // 에러 시 빈 객체 반환
@@ -49,22 +102,20 @@ export const fetchMindmapData = async (chatRoomId = null) => {
 // 노드 분리 API
 export const splitNode = async (nodeId) => {
   try {
-    const authState = store.getState().auth
-    // console.log('유저정보:', authState);
-    const elementId = nodeId
+    const authState = store.getState().auth;
+    const elementId = nodeId;
 
-    console.log(nodeId)
-    console.log(`${BASE_URL}/api/mindmaps/seperateTopic/${elementId}/${authState.user.userId}`)
+    const response = await axios.post(
+      `${BASE_URL}/api/mindmaps/seperateTopic/${elementId}/${authState.user.userId}`
+    );
 
-    const response = await axios.post(`${BASE_URL}/api/mindmaps/seperateTopic/${elementId}/${authState.user.userId}`)
-
-    console.log("분리 응답:", response.data) // 새로운 채팅방 ID 반환
-    return response.data
+    // 서버에서 반환된 newChatRoomId를 반환
+    return response.data.newChatRoomId;
   } catch (error) {
-    console.error("노드 분리 실패:", error)
-    throw error
+    console.error("노드 분리 실패:", error);
+    throw error;
   }
-}
+};
 
 // 노드 삭제 API
 export const deleteNode = async (nodeId) => {

@@ -13,4 +13,6 @@ public interface ChatRoomService {
     String getTitle(String input);
     List<ChatRoomResponse> findAllByCreatorId(long creatorId);
     void deleteChatRoomById(Long id);
+
+    void toggleStarredStatus(Long id);
 }

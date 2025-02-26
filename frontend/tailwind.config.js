@@ -19,7 +19,7 @@ export default {
         },
       },
       boxShadow: {
-        neon: "0 0 2px #FFDB01, 0 0 4px #FFDB01, 0 0 8px #FFDB01",
+        neon: "0 0 2px #FFFFFF, 0 0 4px #FFFFFF, 0 0 8px #FFFFFF",
       },
     },
   },

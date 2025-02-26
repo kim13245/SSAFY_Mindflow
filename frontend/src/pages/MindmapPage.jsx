@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchMindmapData } from "../api/mindmap";
 import Mindmap from "../components/feature/Mindmap";
-import Mindmaproom from "../components/feature/Mindmaproom";
-import Mindmaproomdetail from "../components/feature/Mindmaproomdetail";
 
-const MindmapPage = () => {
+const MindmapPage = ({ setRefreshTrigger, onChatRoomSelect }) => {
   const { chatRoomId, id } = useParams();
   const [mindmapData, setMindmapData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -15,8 +13,23 @@ const MindmapPage = () => {
     const loadMindmapData = async () => {
       try {
         setLoading(true);
-        const data = await fetchMindmapData(chatRoomId);
-        setMindmapData(data);
+        let data;
+        
+        if (id) {
+          // /mindmap/node/:id 패턴일 때
+          data = await fetchMindmapData(null, id);
+        } else if (chatRoomId) {
+          // /mindmap/room/:chatRoomId 패턴일 때
+          data = await fetchMindmapData(chatRoomId);
+        } else {
+          // /mindmap/ 패턴일 때
+          data = await fetchMindmapData();
+        }
+
+        setMindmapData({
+          ...data,
+          viewType: id ? 'node' : chatRoomId ? 'room' : 'all'
+        });
       } catch (error) {
         console.error('마인드맵 데이터 로딩 실패:', error);
         setError(error);
@@ -26,7 +39,7 @@ const MindmapPage = () => {
     };
 
     loadMindmapData();
-  }, [chatRoomId]);
+  }, [chatRoomId, id]);
 
   // const handleDataUpdate = async () => {
   //   const updatedData = await fetchMindmapData(chatRoomId);
@@ -37,17 +50,8 @@ const MindmapPage = () => {
   if (error) return <div>에러가 발생했습니다.</div>;
   if (!mindmapData) return null;
 
-  // URL 패턴에 따라 적절한 컴포넌트 렌더링
-  if (id) {
-    // /mindmap/node/:id 패턴
-    return <Mindmaproomdetail data={mindmapData} />;
-  } else if (chatRoomId) {
-    // /mindmap/room/:chatRoomId 패턴
-    return <Mindmaproom data={mindmapData} />;
-  } else {
-    // /mindmap/ 패턴
-    return <Mindmap data={mindmapData} />;
-  }
+  // 모든 경우에 Mindmap 컴포넌트 사용
+  return <Mindmap data={mindmapData} setRefreshTrigger={setRefreshTrigger} onChatRoomSelect={onChatRoomSelect} />;
 };
 
 export default MindmapPage;

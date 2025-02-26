@@ -17,11 +17,11 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const token = store.getState().auth.user?.accessToken
-    console.log("토큰 값 확인:", token) // 토큰 값 확인
+    // console.log("토큰 값 확인:", token) // 토큰 값 확인
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
-      console.log("최종 헤더 확인:", config.headers) // 최종 헤더 확인
+      // console.log("최종 헤더 확인:", config.headers) // 최종 헤더 확인
     }
     return config
   },

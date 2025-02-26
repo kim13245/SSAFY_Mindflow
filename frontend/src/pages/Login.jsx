@@ -4,6 +4,8 @@ import { login } from "../store/slices/authSlice"
 import { useNavigate } from "react-router-dom"
 import api from "../api/axios"
 import kakaoIcon from "../assets/kakao-icon.svg" // 카카오 아이콘 이미지
+import googleIcon from "../assets/google.svg" // 구글 아이콘 이미지
+import { toast } from "react-toastify"
 
 const Login = () => {
   // email -> accountId로 변경
@@ -29,7 +31,7 @@ const Login = () => {
       // 로그인 성공
       if (response.status === 200) {
         dispatch(login(response.data))
-        alert("로그인 성공")
+        toast.success("로그인 되었습니다.")
         navigate("/main")
       }
     } catch (error) {
@@ -38,18 +40,35 @@ const Login = () => {
     }
   }
 
+  // kakao 소셜 로그인
+  const handleKakao = async () => {
+    try {
+      // 구글 API로 로그인 요청
+
+      const response = await api.get("/api/auth/oauth2/login/kakao")
+      if (response.data) {
+        window.location.href = response.data
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   // google 소셜 로그인
-  // const handleGoogle = async (e) => {
-  //   e.preventDeault()
-  //   setError("")
-  //
-  //   try {
-  //     // 구글 API로 로그인 요청
-  //   }
-  // }
+  const handleGoogle = async () => {
+    try {
+      // 구글 API로 로그인 요청
+      const response = await api.get("/api/auth/oauth2/login/google")
+      if (response.data) {
+        window.location.href = response.data
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#353a3e] py-12 px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#171717] py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <h2 className="text-center text-3xl font-extrabold text-white">환영합니다</h2>
 
@@ -99,52 +118,57 @@ const Login = () => {
             <span className="px-2 bg-gray-800 text-gray-400">또는</span>
           </div>
         </div>
-
-        <button
-          className="
-          w-full
-          flex
-          items-center
-          justify-center
-          px-4
-          py-2
-          bg-[#FEE500]
-          rounded-md
-          text-sm
-          font-medium
-          text-black
-          hover:bg-yellow-500
-          focus:outline-none
-          focus:ring-2
-          focus:ring-offset-2
-          focus:ring-yellow-500
-          transition-colors
-          duration-200"
-        >
-          <img src={kakaoIcon} alt="카카오 아이콘" className="w-5 h-5 mr-2" /> 카카오 로그인
-        </button>
-        {/*<button className="*/}
-        {/*w-full*/}
-        {/*flex*/}
-        {/*items-center*/}
-        {/*px-4*/}
-        {/*py-2*/}
-        {/*bg-white*/}
-        {/*rounded-md*/}
-        {/*text-sm*/}
-        {/*font-medium*/}
-        {/*text-black*/}
-        {/*hover:bg-gray-100*/}
-        {/*focus:outline-none*/}
-        {/*focus:ring-2*/}
-        {/*focus:ring-offset-2*/}
-        {/*focus:ring-gray-100*/}
-        {/*transition-colors*/}
-        {/*duration-200*/}
-        {/*">*/}
-
-        {/*</button>*/}
-
+        <div className="rounded-md shadow-sm space-y-4">
+          <button
+            className="
+            w-full
+            flex
+            items-center
+            justify-center
+            px-4
+            py-2
+            m-0
+            bg-[#FEE500]
+            rounded-md
+            text-sm
+            font-medium
+            text-black
+            hover:bg-yellow-500
+            focus:outline-none
+            focus:ring-2
+            focus:ring-offset-2
+            focus:ring-yellow-500
+            transition-colors
+            duration-200"
+            onClick={handleKakao}
+          >
+            <img src={kakaoIcon} alt="카카오 아이콘" className="w-5 h-5 mr-2" /> 카카오 로그인
+          </button>
+          <button
+            className="
+            w-full
+            flex
+            items-center
+            justify-center
+            px-4
+            py-2
+            bg-white
+            rounded-md
+            text-sm
+            font-medium
+            text-black
+            hover:bg-yellow-500
+            focus:outline-none
+            focus:ring-2
+            focus:ring-offset-2
+            focus:ring-yellow-500
+            transition-colors
+            duration-200"
+            onClick={handleGoogle}
+          >
+            <img src={googleIcon} alt="구글 아이콘" className="w-5 h-5 mr-2" /> 구글 로그인
+          </button>
+        </div>
         <div className="flex justify-center space-x-4 text-sm text-[#0eacf9]">
           <a href="#" className="hover:text-gray-300">
             이용약관

@@ -26,6 +26,8 @@ const AppLayout = () => {
   // 현재 라우트 위치 정보를 가져오는 훅
   const location = useLocation()
 
+  const [isCollapsed, setIsCollapsed] = useState(false)
+
   // 채팅방 업데이트 핸들러(Sidebar)
   const handleChatRoomSelect = (roomId) => {
     if (roomId) {
@@ -42,7 +44,7 @@ const AppLayout = () => {
   // 인증 페이지일 경우 간단한 레이아웃 반환
   if (isAuthPage || !userId) {
     return (
-      <div className="h-screen bg-[#353a3e]">
+      <div className="h-screen bg-[#171717]">
         <Routes>
           {routes.map((route) => (
             <Route key={route.path} path={route.path} element={route.element} />
@@ -54,7 +56,7 @@ const AppLayout = () => {
 
   // 일반 페이지일 경우 전체 레이아웃 반환
   return (
-    <div className="flex h-screen bg-[#353a3e]">
+    <div className="flex h-screen bg-[#171717]">
       {/* 사이드바 컴포넌트 - 모달 열기/닫기 함수 전달 */}
       <Sidebar
         onOpenModal={() => setIsOpen(!isOpen)}
@@ -64,12 +66,11 @@ const AppLayout = () => {
         currentChatRoom={currentChatRoom}
         chatSemaphore={chatSemaphore}
         mindSemaphore={mindSemaphore}
+        setIsCollapsed={setIsCollapsed}
       />
       <div className="flex-1 flex flex-col">
         {/* 상단 네비게이션 바 */}
-        <Navbar 
-          onChatRoomSelect={handleChatRoomSelect}
-        />
+        <Navbar onChatRoomSelect={handleChatRoomSelect} />
         {/* 메인 컨텐츠 영역 */}
         <main className="flex-1 px-5 overflow-y-auto">
           {/* 검색 모달 컴포넌트 */}
@@ -89,6 +90,7 @@ const AppLayout = () => {
                   setChatSemaphore,
                   mindSemaphore,
                   setMindSemaphore,
+                  isCollapsed,
                 })}
               />
             ))}

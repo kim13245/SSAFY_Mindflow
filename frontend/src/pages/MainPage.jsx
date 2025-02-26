@@ -1,10 +1,57 @@
+{
+  /*
+
+HCX-003
+
+gemini-2.0-flash-lite-preview-02-05
+
+최신 멀티모달 기능을 지원.
+고속 처리와 다양한 작업에서 뛰어난 성능 제공.
+복잡한 멀티모달 작업에 적합.)
+
+gemini-2.0-flash
+
+비용 효율성과 낮은 지연 시간에 최적화.
+고빈도 작업에서 효율적인 성능 제공.
+
+gemini-1.5-flash
+
+빠르고 다재다능한 성능.
+다양한 작업에서 안정적인 결과 제공.
+
+gemini-1.5-pro
+복잡한 추론 작업에 적합.
+높은 지능이 요구되는 작업에 최적화.
+
+
+
+gpt-4
+ 가장 성능이 뛰어난 모델로, 8192 토큰까지 처리 가능
+
+gpt-3.5-turbo
+현재 가장 효과적이고 비용 효율적인 모델로, 4,096개의 토큰을 생성할 수 있습니다
+
+gpt-3.5-turbo-1106
+
+ 향상된 명령어 따름, JSON 모드, 재현성 있는 출력 등을 제공하는 최신 GPT-3.5 Turbo 모델입니다
+
+
+Claude 3 시리즈
+Claude 3.5 Sonnet:  claude-3-5-sonnet-20241022
+Claude 3.5 Haiku:  claude-3-5-haiku-20241022
+
+Claude 3 Sonnet:  claude-3-sonnet-20240229
+Claude 3 Haiku:  claude-3-haiku-20240307
+Claude 3 Opus:  claude-3-opus-20240229
+ */
+}
 import { useRef, useEffect, useState, useCallback } from "react"
-import { ArrowUpCircle, ChevronDown } from "lucide-react"
+import { ChevronDown, SendHorizontal, Map, Loader2 } from "lucide-react"
 import ModelCard from "../components/common/ModelCard.jsx"
 import api from "../api/axios.js"
 import { useSelector } from "react-redux"
 import { io } from "socket.io-client"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 // WebSocket 연결 설정
 // - localhost:5001 서버와 웹소켓 연결을 설정
@@ -13,6 +60,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 const baseURL = import.meta.env.VITE_APP_SOCKET_BASE_URL
 
 const socket = io(baseURL, {
+  autoConnect: false,
   transports: ["websocket"], // WebSocket 프로토콜만 사용
   reconnection: true, // 연결 끊김 시 재연결 시도
   reconnectionAttempts: 5, // 최대 재연결 시도 횟수
@@ -21,13 +69,23 @@ const socket = io(baseURL, {
 
 // MainPage 컴포넌트 정의
 // setRefreshTrigger: 새로운 채팅방 생성 시 사이드바 갱신을 위한 prop
-const MainPage = ({ refreshTrigger, setRefreshTrigger, currentChatRoom, onChatRoomSelect, chatSemaphore, setChatSemaphore }) => {
+const MainPage = ({
+  refreshTrigger,
+  setRefreshTrigger,
+  currentChatRoom,
+  onChatRoomSelect,
+  chatSemaphore,
+  setChatSemaphore,
+  mindSemaphore,
+  setMindSemaphore,
+  isCollapsed, // 추가된 prop
+}) => {
   // ===== Refs =====
-  const location = useLocation()
   const navigate = useNavigate()
   const textareaRef = useRef(null) // 입력창 높이 자동조절을 위한 ref
   const messagesEndRef = useRef(null) // 새 메시지 추가시 자동 스크롤을 위한 ref
   const containerRef = useRef(null) // 채팅 메시지 컨테이너의 DOM 요소를 참조하기 위한 ref
+  const modelDropdownRef = useRef(null)
   // - 스크롤 위치 감지
   // - 무한 스크롤 구현에 사용
 
@@ -43,10 +101,11 @@ const MainPage = ({ refreshTrigger, setRefreshTrigger, currentChatRoom, onChatRo
   const [detailModel, setDetailModel] = useState("gpt-3.5-turbo") // 선택된 모델의 세부 버전
   const [showModelCards, setShowModelCards] = useState(false) // 모델 선택 UI 표시 여부
   const [isModelDropdownOpen, setIsModelDropdownOpen] = useState(false) // 모델 선택 드롭다운 상태
-
+  const [isResponseLoading, setIsResponseLoading] = useState(false) // 채팅 로딩 중 여부
   // 채팅방 관련 상태
-  const [page, setPage] = useState(1) // 무한 스크롤을 위한 현재 페이지 번호 (1부터 시작)
-  const [hasMore, setHasMore] = useState(true) // 더 불러올 이전 메시지가 있는지 여부를 나타내는 플래그
+  // const [page, setPage] = useState(1) // 무한 스크롤을 위한 현재 페이지 번호 (1부터 시작)
+  // const [hasMore, setHasMore] = useState(true) // 더 불러올 이전 메시지가 있는지 여부를 나타내는 플래그
+  const [isAutoScroll, setIsAutoScroll] = useState(true) // 자동 스크롤 상태
 
   // 각 AI 모델별 스트리밍 응답 저장
   const [modelStreamingTexts, setModelStreamingTexts] = useState({
@@ -70,10 +129,10 @@ const MainPage = ({ refreshTrigger, setRefreshTrigger, currentChatRoom, onChatRo
   const modelList = ["chatgpt", "claude", "google", "clova"]
   // 각 모델별 세부 버전 정의
   const detailModelList = {
-    chatgpt: ["gpt-3.5-turbo", "gpt-4o", "gpi-4o-mini", "gpt-o1"],
-    claude: ["claude-3-5-sonnet-latest", "claude-3-opus", "claude-3.5-haiku"],
-    google: ["gemini-2.0-flash-exp", "gemini-1.5-pro"],
-    clova: ["HCX-003", "clova-studio-basic"],
+    chatgpt: ["gpt-3.5-turbo", "gpt-3.5-turbo-1106", "gpt-4"],
+    claude: ["claude-3-5-sonnet-latest", "claude-3-opus-20240229", "claude-3-5-haiku-20241022"],
+    google: ["gemini-2.0-flash-exp", "gemini-2.0-flash-lite-preview-02-05", "gemini-2.0-flash"],
+    clova: ["HCX-003"],
   }
 
   // ===== useEffect 훅 =====
@@ -89,7 +148,7 @@ const MainPage = ({ refreshTrigger, setRefreshTrigger, currentChatRoom, onChatRo
       try {
         // API를 통해 채팅 내역 가져오기
         const response = await api.get(`/api/chatroom/messages/${currentChatRoom}`)
-
+        console.log(response.data)
         // 서버 응답 데이터를 UI에 표시할 수 있는 형식으로 변환
         const formattedMessages = response.data.flatMap((message) => [
           // 첫 번째 요소: 사용자의 질문
@@ -109,7 +168,6 @@ const MainPage = ({ refreshTrigger, setRefreshTrigger, currentChatRoom, onChatRo
         ])
 
         setMessages(formattedMessages)
-
         const lastMessage = response.data[response.data.length - 1]
 
         setModel(lastMessage.model)
@@ -160,9 +218,14 @@ const MainPage = ({ refreshTrigger, setRefreshTrigger, currentChatRoom, onChatRo
 
   // WebSocket 이벤트 리스너 설정
   useEffect(() => {
+    // 소켓 연결 시작
+    if (!socket.connected) {
+      socket.connect()
+    }
     // 연결 성공 이벤트
     socket.on("connect", () => {
-      console.log("Socket connected")
+      socket.emit("join", { room: userId })
+      console.log(userId)
     })
 
     // 연결 에러 이벤트
@@ -174,6 +237,7 @@ const MainPage = ({ refreshTrigger, setRefreshTrigger, currentChatRoom, onChatRo
     socket.on("stream", (data) => {
       // console.log("Stream chunk received:", data)
       setStreamingText((prev) => prev + data.content)
+      setIsResponseLoading(false) // 로딩 종료
     })
 
     // 모든 모델의 스트리밍 데이터 수신
@@ -215,8 +279,9 @@ const MainPage = ({ refreshTrigger, setRefreshTrigger, currentChatRoom, onChatRo
       socket.off("all_stream")
       socket.off("stream_end")
       socket.off("error")
+      socket.off("mindmap_status")
     }
-  }, [handleStreamEndCallback])
+  }, [handleStreamEndCallback, userId, currentChatRoom])
 
   // **모델 선택 시 처리**
   const handleModelSelect = async (modelName) => {
@@ -228,6 +293,7 @@ const MainPage = ({ refreshTrigger, setRefreshTrigger, currentChatRoom, onChatRo
     // responses 대신 modelStreamingTexts 사용
     const streamingText = modelStreamingTexts[modelName]
 
+    setIsResponseLoading(false)
     setModel(modelName)
     // 기본 detail_model 설정
     setDetailModel(detailModelList[modelName][0])
@@ -255,7 +321,18 @@ const MainPage = ({ refreshTrigger, setRefreshTrigger, currentChatRoom, onChatRo
 
       // 모든 모델의 스트리밍 텍스트 초기화
       if (response.data && response.data.chat_room_id) {
-        localStorage.setItem("currentChatRoom", response.data.chat_room_id.toString())
+        const newChatRoomId = response.data.chat_room_id
+        localStorage.setItem("currentChatRoom", newChatRoomId.toString())
+
+        // 새로운 채팅방에 소켓 연결
+        socket.emit("join_room", { chatRoomId: newChatRoomId })
+
+        // 마인드맵 상태를 즉시 'generating'으로 설정
+        setMindmapStatus({
+          status: "generating",
+          message: "마인드맵을 생성하고 있습니다",
+        })
+
         onChatRoomSelect(response.data.chat_room_id)
         setModelStreamingTexts({
           chatgpt: "",
@@ -285,6 +362,9 @@ const MainPage = ({ refreshTrigger, setRefreshTrigger, currentChatRoom, onChatRo
     if (!userInput.trim()) return
 
     setChatSemaphore(true) //임계 구역 설정: 채팅입력, 채팅방 변경 방지
+    if (currentChatRoom) {
+      setIsResponseLoading(true) // 로딩 시작
+    }
     // 사용자 메시지를 즉시 화면에 표시
     const userMessage = {
       text: userInput,
@@ -335,8 +415,10 @@ const MainPage = ({ refreshTrigger, setRefreshTrigger, currentChatRoom, onChatRo
     } catch (error) {
       console.error("메시지 전송 오류:", error)
       setStreamingText("")
+      setIsResponseLoading(false) // 로딩 종료
     } finally {
       setChatSemaphore(false) // 임계 구역 해제
+      setIsResponseLoading(false)
       setUserInput("")
     }
   }
@@ -376,61 +458,31 @@ const MainPage = ({ refreshTrigger, setRefreshTrigger, currentChatRoom, onChatRo
     adjustTextareaHeight(e.target)
   }
 
-  // 스크롤 이벤트 처리
-  const handleScroll = useCallback(() => {
-    if (!containerRef.current) return
-
-    const { scrollTop } = containerRef.current
-    // 스크롤이 상단에 가까워지면 이전 메시지 로드
-    if (scrollTop < 100 && hasMore) {
-      loadMoreMessages()
-    }
-  }, [hasMore])
-
-  // 무한스크롤 로직
-  const loadMoreMessages = async () => {
-    // 현재 활성화된 채팅방이 없으면 함수 종료
-    if (!currentChatRoom) return
-
-    try {
-      // 현재 페이지 번호를 기준으로 이전 메시지들을 서버에서 가져옴
-      const response = await api.get(`/api/chatroom/messages/${currentChatRoom}?page=${page}`)
-
-      // 서버로부터 받은 메시지 데이터를 UI에 맞게 변환
-      const newMessages = response.data.flatMap((message) => [
-        {
-          text: message.question,
-          isUser: true,
-        },
-        {
-          text: message.answerSentences.map((sentence) => sentence.content).join(" "),
-          isUser: false,
-        },
-      ])
-
-      // 새로 받은 메시지들을 기존 메시지 배열의 앞쪽에 추가
-      // (시간순으로 정렬하기 위해 이전 메시지가 앞에 위치)
-      setMessages((prev) => [...newMessages, ...prev])
-
-      // 다음 페이지를 위해 페이지 번호 증가
-      setPage((prev) => prev + 1)
-
-      // 새로 받은 메시지가 있으면 더 불러올 메시지가 있다고 판단
-      // 메시지가 없으면 더 이상 불러올 메시지가 없음을 표시
-      setHasMore(newMessages.length > 0)
-    } catch (error) {
-      console.error("이전 메시지 로딩 실패:", error)
-    }
-  }
-
-  // 스크롤 이벤트 리스너 등록
   useEffect(() => {
     const container = containerRef.current
-    if (container) {
-      container.addEventListener("scroll", handleScroll)
-      return () => container.removeEventListener("scroll", handleScroll)
+    if (!container) return
+
+    const handleScroll = () => {
+      // 현재 스크롤 위치가 하단이이라면 자동 스크롤 활성화
+      const isAtBottom = Math.abs(container.scrollHeight - container.scrollTop - container.clientHeight) < 1
+      setIsAutoScroll(isAtBottom)
     }
-  }, [handleScroll])
+
+    container.addEventListener("scroll", handleScroll)
+
+    return () => container.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  // 자동 스크롤 이벤트 리스너 등록
+  useEffect(() => {
+    if (streamingText && containerRef.current && isAutoScroll) {
+      const container = containerRef.current
+      container.scrollTo({
+        top: container.scrollHeight,
+        behavior: "auto", // 'smooth' 대신 'auto' 사용
+      })
+    }
+  }, [streamingText, messages, isAutoScroll])
 
   // 마인드맵 조회 핸들러
   const handleMindmapView = async () => {
@@ -443,11 +495,25 @@ const MainPage = ({ refreshTrigger, setRefreshTrigger, currentChatRoom, onChatRo
     }
   }
 
+  // useEffect 추가
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modelDropdownRef.current && !modelDropdownRef.current.contains(event.target)) {
+        setIsModelDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
+
   // **렌더링**
   return (
     <div className="h-full flex flex-col p-4 relative" id="modal-root">
       {/* 메시지 표시 영역 - 스크롤 가능 */}
-      <div className="flex-1 overflow-y-auto mb-4">
+      <div className="flex-1 overflow-y-auto" style={{ marginBottom: "120px" }} ref={containerRef}>
         {/* 이전 메시지들 표시 */}
         {messages.map((message, index) => (
           <div key={index} className="mb-4">
@@ -456,9 +522,9 @@ const MainPage = ({ refreshTrigger, setRefreshTrigger, currentChatRoom, onChatRo
         ))}
 
         {/* 스트리밍 중일 때만 임시로 표시되는 메시지 */}
-        {streamingText && (
+        {(streamingText || isResponseLoading) && (
           <div className="mb-4">
-            <ModelCard text={streamingText} isUser={false} model={model} className="animate-pulse" />
+            <ModelCard text={streamingText} isUser={false} model={model} className="animate-pulse model-card" isLoading={isResponseLoading} />
           </div>
         )}
         <div ref={messagesEndRef} />
@@ -474,98 +540,106 @@ const MainPage = ({ refreshTrigger, setRefreshTrigger, currentChatRoom, onChatRo
                   </span>
                   <span className="text-gray-800 capitalize text-sm">{modelName}</span>
                 </div>
-                <p className="text-sm text-gray-600">{streamingText || <span className="animate-pulse">마인드맵 생성중...</span>}</p>
+                <p className="text-sm text-gray-600">{streamingText || <Loader2 className="w-5 h-5 animate-spin mr-2" />}</p>
               </div>
             ))}
           </div>
         )}
       </div>
 
-      {/* 채팅 입력 폼 - 고정 위치 */}
-      <div className="w-1/2 mx-auto flex gap-2">
-        <form onSubmit={handleMessageSend} className="relative flex-1">
-          <textarea
-            ref={textareaRef}
-            value={userInput}
-            onChange={handleInputChange}
-            rows={1}
-            disabled={chatSemaphore || showModelCards}
-            placeholder={showModelCards ? "모델을 선택해주세요" : chatSemaphore ? "메시지 전송 중..." : "메시지를 입력하세요"}
-            className={`w-full px-4 py-2 pr-12 rounded-lg bg-[#e0e0e0] text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#FFD26F] resize-none overflow-y-auto ${
-              chatSemaphore || showModelCards ? "opacity-50 cursor-not-allowed" : ""
-            }`}
-            style={{ minHeight: "40px", maxHeight: "120px", lineHeight: "24px" }}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault()
-                handleMessageSend(e)
-              }
-            }}
-          />
-          <button
-            type="submit"
-            disabled={chatSemaphore || showModelCards}
-            className={`absolute right-2 top-[8px] text-gray-600 hover:text-[#FBFBFB] ${chatSemaphore || showModelCards ? "opacity-50 cursor-not-allowed" : ""}`}
-          >
-            <ArrowUpCircle size={24} />
-          </button>
-        </form>
+      {/* 채팅 입력 폼 - Sidebar 너비를 고려한 고정 위치 */}
+      <div className={`fixed bottom-0 right-0 bg-transparent backdrop-blur-none border-none transition-all duration-300 ${isCollapsed ? "left-16" : "left-64"}`}>
+        <div className="max-w-2xl min-w-fit mx-auto px-4 py-4">
+          {/* 상단 버튼 영역 */}
+          <div className="flex justify-end gap-2 mb-3">
+            {/* 모델 선택 드롭다운과 마인드맵 버튼을 같은 조건으로 감싸기 */}
+            {model && (
+              <>
+                <div className="relative" ref={modelDropdownRef}>
+                  <button onClick={toggleModelDropdown} className="h-10 px-4 rounded-xl bg-gray-100 text-gray-700 hover:bg-gray-200 flex items-center gap-2 transition-colors">
+                    <img src={getModelIcon(model)} alt={model} className="w-5 h-5 object-contain" />
+                    <span className="capitalize">{model}</span>
+                    <ChevronDown size={16} />
+                  </button>
 
-        {/* 모델 선택 드롭다운 */}
-        {model && (
-          <div className="relative">
-            <button onClick={toggleModelDropdown} className="h-[40px] px-4 rounded-lg bg-[#e0e0e0] text-gray-800 hover:bg-[#EFEFEF] flex items-center gap-2">
-              <img src={getModelIcon(model)} alt={model} className="w-5 h-5 object-contain" />
-              <span className="capitalize">{model}</span>
-              <ChevronDown size={16} />
-            </button>
-
-            {/* 드롭다운 메뉴 */}
-            {isModelDropdownOpen && (
-              <div className="absolute bottom-full mb-2 right-0 flex gap-2">
-                <div className="w-40 bg-white rounded-lg shadow-lg py-2">
-                  {modelList.map((modelName) => (
-                    <button
-                      key={modelName}
-                      onClick={() => changeModel(modelName)}
-                      className={`w-full px-4 py-2 text-left flex items-center gap-2 hover:bg-gray-100 ${modelName === model ? "bg-gray-50" : ""}`}
-                    >
-                      <img src={getModelIcon(modelName)} alt={modelName} className="w-5 h-5 object-contain" />
-                      <span className="capitalize">{modelName}</span>
-                    </button>
-                  ))}
+                  {/* 드롭다운 메뉴 */}
+                  {isModelDropdownOpen && (
+                    <div className="absolute bottom-full mb-2 right-0 flex gap-2 bg-white rounded-lg shadow-lg p-2">
+                      <div className="w-40">
+                        {modelList.map((modelName) => (
+                          <button
+                            key={modelName}
+                            onClick={() => changeModel(modelName)}
+                            className={`w-full px-3 py-2 rounded-lg flex items-center gap-2 hover:bg-gray-400 ${modelName === model ? "bg-gray-300" : ""}`}
+                          >
+                            <img src={getModelIcon(modelName)} alt={modelName} className="w-5 h-5 object-contain" />
+                            <span className="capitalize">{modelName}</span>
+                          </button>
+                        ))}
+                      </div>
+                      {/* 세부 모델 목록 드롭다운 */}
+                      {model && (
+                        <div className="w-56 bg-white rounded-lg shadow-lg py-2">
+                          {detailModelList[model].map((detailModelName) => (
+                            <button
+                              key={detailModelName}
+                              onClick={() => changeDetailModel(detailModelName)}
+                              className={`w-full px-4 py-2 text-left text-sm hover:bg-gray-400 ${detailModelName === detailModel ? "bg-gray-300" : ""}`}
+                            >
+                              {detailModelName}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
-                {/* 세부 모델 목록 드롭다운 */}
-                {model && (
-                  <div className="w-56 bg-white rounded-lg shadow-lg py-2">
-                    <div className="px-4 py-2 text-sm font-medium text-gray-600 border-b border-gray-100"></div>
-                    {detailModelList[model].map((detailModelName) => (
-                      <button
-                        key={detailModelName}
-                        onClick={() => changeDetailModel(detailModelName)}
-                        className={`w-full px-4 py-2 text-left text-sm hover:bg-gray-100 ${detailModelName === detailModel ? "bg-gray-50" : ""}`}
-                      >
-                        {detailModelName}
-                      </button>
-                    ))}
-                  </div>
+
+                {/* 마인드맵 버튼 */}
+                {mindmapStatus.status === "completed" ? (
+                  <button onClick={handleMindmapView} className="h-10 px-4 rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 flex items-center gap-2 transition-colors">
+                    <Map size={20} />
+                    <span className="hidden sm:inline">마인드맵</span>
+                  </button>
+                ) : (
+                  <button disabled className="h-10 px-4 rounded-xl bg-gray-100 text-gray-500 flex items-center gap-2 cursor-not-allowed">
+                    <Loader2 size={20} className="animate-spin" />
+                    <span className="hidden sm:inline">생성중</span>
+                  </button>
                 )}
-              </div>
+              </>
             )}
           </div>
-        )}
 
-        {/* 마인드맵 버튼 */}
-        {mindmapStatus.status === "completed" ? (
-          <button onClick={handleMindmapView} className="h-[40px] px-4 rounded-lg bg-[#e0e0e0] text-gray-800 hover:bg-[#EFEFEF] flex items-center gap-2 ml-2">
-            마인드맵 조회하기
-          </button>
-        ) : (
-          <button disabled className="h-[40px] px-4 rounded-lg bg-gray-200 text-gray-500 cursor-not-allowed flex items-center gap-2 ml-2">
-            <span className="animate-spin">⚙️</span>
-            {mindmapStatus.message || "마인드맵 생성중"}
-          </button>
-        )}
+          {/* 입력창 영역 */}
+          <form onSubmit={handleMessageSend} className="relative">
+            <textarea
+              ref={textareaRef}
+              value={userInput}
+              onChange={handleInputChange}
+              rows={1}
+              disabled={chatSemaphore || showModelCards}
+              placeholder={showModelCards ? "모델을 선택해주세요" : chatSemaphore ? "메시지 전송 중..." : "무엇이 궁금하신가요?"}
+              className={`w-full px-4 py-3 pr-12 rounded-2xl bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none overflow-y-auto ${
+                chatSemaphore || showModelCards ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              style={{ minHeight: "48px", maxHeight: "120px" }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault()
+                  handleMessageSend(e)
+                }
+              }}
+            />
+            <button
+              type="submit"
+              disabled={chatSemaphore || showModelCards}
+              className={`absolute right-4 bottom-3 text-gray-500 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed p-2 rounded-lg transition-colors`}
+            >
+              <SendHorizontal size={24} />
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   )

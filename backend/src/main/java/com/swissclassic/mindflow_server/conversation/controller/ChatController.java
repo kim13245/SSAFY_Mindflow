@@ -4,18 +4,13 @@ import com.swissclassic.mindflow_server.conversation.model.dto.*;
 import com.swissclassic.mindflow_server.conversation.model.entity.ChatLog;
 import com.swissclassic.mindflow_server.conversation.model.entity.ChatRoom;
 import com.swissclassic.mindflow_server.conversation.model.entity.ConversationSummary;
-import com.swissclassic.mindflow_server.conversation.service.AiServerService;
-import com.swissclassic.mindflow_server.conversation.service.ChatLogService;
-import com.swissclassic.mindflow_server.conversation.service.ChatRoomService;
-import com.swissclassic.mindflow_server.conversation.service.ConversationSummaryService;
+import com.swissclassic.mindflow_server.conversation.service.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 import java.util.*;
@@ -33,7 +28,7 @@ public class ChatController {
     private final ChatRoomService roomService;
     private final ChatLogService chatLogService;
     private final ConversationSummaryService conversationSummaryService;
-
+    private final MemoryService memoryService;
 
     @PostMapping("/send")
     @Operation(description = "gemini-2.0-flash-exp")
@@ -83,7 +78,7 @@ public class ChatController {
         List<ChatApiResponse.AnswerSentence> answerSentences = Arrays.stream(
                 conversationSummaryRequest
                         .getAnswer()
-                        .split("\n"))
+                        .split("\\."))
                         .filter(line -> !line.trim()
                         .isEmpty())
                         .map(line -> {
@@ -121,6 +116,7 @@ public class ChatController {
                 "User:" + conversationSummaryRequest.getUserInput() + "\nAI" + conversationSummaryRequest.getAnswer());
 
         conversationSummaryService.saveConversationSummary(conversationSummary);
+        memoryService.setMemory(roomId);
 
         // 마인드맵 생성을 위한 요청 추가
         log.info("초기 마인드맵 생성!!!!!!!!!!!!!!!!!!!!!!!");
@@ -138,6 +134,13 @@ public class ChatController {
         firstChatRespose.setChatRoomId((roomId));
 
         return firstChatRespose;
+    }
+
+    @GetMapping("/room-title/{chatRoomId}")
+    @Operation(summary = "flask 에서 chatRoomId로 title 가져오는 용도", description = "chatRoomId를 입력하세요.")
+    public ResponseEntity<String> getChatRoomTitle(@PathVariable long chatRoomId) {
+        ChatRoom chatRoom = roomService.getChatRoomById(chatRoomId);
+        return ResponseEntity.ok(chatRoom.getTitle());
     }
 
 }

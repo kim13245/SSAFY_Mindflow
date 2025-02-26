@@ -11,11 +11,15 @@ from celery_config import celery
 
 from flask_socketio import SocketIO
 
+import requests
+import traceback
+
 # tasks.py의 상단에 socketio 인스턴스 생성
 socketio = SocketIO(message_queue='redis://redis:6379/0')
 
 load_dotenv()
 
+SPRING_SERVER_URL = os.getenv("SPRING_SERVER_URL")
 
 try:
     # bolt:// 프로토콜 사용 및 데이터베이스 이름 지정
@@ -55,18 +59,30 @@ query_prompt = ChatPromptTemplate.from_messages([("user", """
 {answer_lines}
      
 1. 노드 생성 규칙:
-   - 모든 Topic 노드는 account_id와 chat_room_id 속성을 가져야 함
-   - 첫 노드 생성시:
+   - 모든 Topic 노드는 다음 속성들을 반드시 포함해야 함:
+     * chat_room_id
+     * chat_room_title
+     * mongo_ref (답변 문장의 sentenceId)
+     * title
+     * content
+     * creator_id
+     * created_at
+   - 첫 노드 생성 예예시:
      CREATE (n:Topic {{
          title: '제목',
          content: '내용',
-         account_id: '{account_id}',
          chat_room_id: '{chat_room_id}',
+         chat_room_title: '{chat_room_title}',
+         mongo_ref: '답변문장의_sentenceId',
          creator_id: '{creator_id}',
          created_at: datetime()
      }})
+                                                  
+2. mongo_ref 할당 규칙:
+   - 각 노드는 정확히 하나의 mongo_ref 값을 가져야 함
+   - 하나의 sentenceId는 하나의 노드에만 할당.
 
-2. 기존 마인드맵과의 연결성 분석 (최우선 규칙):
+3. 기존 마인드맵과의 연결성 분석 (최우선 규칙):
    - 새로운 내용을 추가하기 전에 반드시 기존 노드의 title과 content를 검사
    - 연관된 내용이 있다면 해당 노드를 MATCH하여 거기서부터 확장
    - 연관성 검사 예시 쿼리:
@@ -76,7 +92,7 @@ query_prompt = ChatPromptTemplate.from_messages([("user", """
      CREATE (new:Topic {{...}})
      CREATE (existing)-[:HAS_SUBTOPIC]->(new)
 
-3. 계층 구조 생성 규칙:
+4. 계층 구조 생성 규칙:
    - 완전히 새로운 주제인 경우에만 새 루트 노드 생성
    - 대화 내용을 최대한 세분화하여 다단계 계층 구조로 구성
    - 각 개념이나 단계는 더 작은 하위 개념으로 분해
@@ -90,15 +106,15 @@ query_prompt = ChatPromptTemplate.from_messages([("user", """
           -> 하위 개념 추가
              -> 세부 설명 추가
 
-4. 노드 생성 시:
+5. 노드 생성 시:
    - 각 단계별로 적절한 추상화 수준 유지
    - 상위 개념은 포괄적으로, 하위 개념은 구체적으로 작성
    - 새로운 노드 생성 시 기존 노드와의 중복성 검사
    - 각 노드는 반드시 하나의 답변 문장에 대응되어야 함
-   - 각 노드의 mongo_ref 속성에 해당 답변 문장의 sentenceId 값을 저장. 단, 기존 노드에 연결 할 때 해당 노드는 붙이지 않음.(중요!!)
+   - 각 노드의 mongo_ref 속성에 해당 답변 문장의 sentenceId 값을 저장.
                                                 
 
-5. Cypher 쿼리 작성 규칙:
+6. Cypher 쿼리 작성 규칙:
    - 우선 MATCH로 연관된 기존 노드 검색
    - 연관 노드가 있으면 거기서부터 확장
    - 연관 노드가 없으면 새로운 구조 생성
@@ -111,12 +127,12 @@ query_prompt = ChatPromptTemplate.from_messages([("user", """
      CREATE (new:Topic {{...}})
      CREATE (existing)-[:HAS_SUBTOPIC]->(new)
 
-6. 관계 유형:
+7. 관계 유형:
    - HAS_SUBTOPIC: 계층 관계 (상위->하위 개념)
    - RELATED_TO: 연관 관계 (유사 주제간)
    - COMPARED_TO: 비교 관계 (대조되는 개념)
 
-7. 연관성 판단 기준:
+8. 연관성 판단 기준:
    - 동일한 주제 영역
    - 유사한 개념/의미
    - 상위-하위 개념 관계
@@ -184,6 +200,35 @@ def escape_cypher_quotes(text):
 @celery.task
 def create_mindmap(account_id, chat_room_id, chat_id, question, answer_sentences, creator_id):
     print(f"Task received with chat_room_id: {chat_room_id}")
+
+    # Spring 서버에서 채팅방 제목 조회
+    chat_room_title = None
+
+    try:
+        url = f"{SPRING_SERVER_URL}/api/messages/room-title/{chat_room_id}"
+        print(f"Spring 서버 요청 URL: {url}")  # URL 로깅
+        
+        response = requests.get(url)
+        print(f"Spring 서버 응답 상태 코드: {response.status_code}")  # 상태 코드 로깅
+        print(f"Spring 서버 응답 내용: {response.text}")  # 응답 내용 로깅
+        
+        if response.status_code == 200:
+            chat_room_title = response.text
+            print(f"설정된 채팅방 제목: {chat_room_title}")
+        else:
+            print(f"채팅방 제목 조회 실패: HTTP {response.status_code}")
+            print(f"응답 내용: {response.text}")
+    except Exception as e:
+        print(f"채팅방 제목 조회 중 예외 발생:")
+        print(f"예외 타입: {type(e)}")
+        print(f"예외 메시지: {str(e)}")
+        traceback.print_exc()  # 상세한 스택 트레이스 출력
+
+    # 채팅방 제목이 None인 경우 로그
+    if chat_room_title is None:
+        print("주의: 채팅방 제목이 None으로 설정됨")
+
+
     try:
         print(f"""
         마인드맵 생성 시작:
@@ -206,6 +251,7 @@ def create_mindmap(account_id, chat_room_id, chat_id, question, answer_sentences
                         "account_id": account_id, 
                         "chat_room_id": chat_room_id, 
                         "creator_id": creator_id,
+                        "chat_room_title": chat_room_title,  # 채팅방 제목 추가
                     }
 
         # 마인드맵 생성 상태

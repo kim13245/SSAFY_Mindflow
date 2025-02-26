@@ -15,6 +15,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -68,6 +69,14 @@ public class ChatRoomServiceImpl implements ChatRoomService {
 
         // TitleResponse 객체에서 제목 추출
         return response.getResponse();
+    }
+
+    @Override
+    public void toggleStarredStatus(Long id){
+        Optional<ChatRoom> optionalChatRoom = chatRoomRepository.findById(id);
+        ChatRoom chatRoom = optionalChatRoom.get();
+        chatRoom.setStarred(!chatRoom.getStarred());
+        chatRoomRepository.save(chatRoom);
     }
 
     @Override

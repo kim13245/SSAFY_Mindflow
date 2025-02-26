@@ -10,7 +10,7 @@ import LandingPage from "../pages/LandingPage.jsx"
 const routes = [
   {
     path: "/",
-    element: <LandingPage />,
+    element: <PublicRoute element={<LandingPage />} />,
     title: "랜딩페이지",
     requireAuth: false,
   },

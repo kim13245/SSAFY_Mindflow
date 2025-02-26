@@ -29,6 +29,7 @@ public interface TopicRepository extends Neo4jRepository<Topic, String> {
                 mongoRef: n.mongo_ref,
                 accountId: n.account_id,
                 chatRoomId: n.chat_room_id,
+                chatRoomTitle: n.chat_room_title,
                 createdAt: n.created_at
             }),
             relationships: collect(
@@ -60,6 +61,7 @@ public interface TopicRepository extends Neo4jRepository<Topic, String> {
             mongoRef: n.mongo_ref,
             accountId: n.account_id,
             chatRoomId: n.chat_room_id,
+            chatRoomTitle: n.chat_room_title,
             createdAt: n.created_at
         }),
         relationships: collect(

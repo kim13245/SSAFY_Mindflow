@@ -5,12 +5,14 @@ import { X } from "lucide-react"
 import PropTypes from "prop-types"
 import api from "../../api/axios"
 import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 const SearchModal = ({ isOpen, onClose, onChatRoomSelect }) => {
   const [searchInput, setSearchInput] = useState("")
   const [SearchResults, setSearchResults] = useState([])
 
   const userId = useSelector((state) => state.auth.user.userId)
+  const navigate = useNavigate()
 
   const handleSearch = async () => {
     // 더미 데이터
@@ -62,6 +64,7 @@ const SearchModal = ({ isOpen, onClose, onChatRoomSelect }) => {
 
   const handleResultClick = (chatRoomId) => {
     onChatRoomSelect(chatRoomId)
+    navigate("/main")
     onClose()
   }
 
@@ -77,8 +80,8 @@ const SearchModal = ({ isOpen, onClose, onChatRoomSelect }) => {
         <div className="bg-gray-100 rounded-lg w-full max-w-2xl mx-auto pointer-events-auto flex-col">
           <div className="flex justify-between items-center p-4 border-b">
             <input type="text" value={searchInput} onChange={handleInputChange} placeholder="검색 입력..." className="w-full p-2 rounded-md" onKeyDown={handleKeyPress} />
-            <button onClick={onClose} className="p-1 hover:bg-gray-400 rounded-full">
-              <X className="w-2 p-2 text-black" />
+            <button onClick={onClose} className="p-1 hover:bg-gray-400 rounded-full ml-2">
+              <X className="w-6 h-6" />
             </button>
           </div>
           <div className="p-4">
@@ -91,15 +94,17 @@ const SearchModal = ({ isOpen, onClose, onChatRoomSelect }) => {
         text-left 
         p-2 
         mb-2 
-        bg-gray-800 
-        text-white 
-        rounded-full 
-        hover:bg-gray-700 
+        bg-gray-50 
+        rounded-md
+        hover:bg-gray-200 
         transition-all 
         duration-300 
         shadow-md
         hover:shadow-neon
-        animate-neon-shine"
+        animate-neon-shine
+        whitespace-nowrap 
+        overflow-hidden 
+        text-ellipsis"
               >
                 {result.answerSentences[0]?.content}
                 {result.answerSentences.length > 1 && "..."}

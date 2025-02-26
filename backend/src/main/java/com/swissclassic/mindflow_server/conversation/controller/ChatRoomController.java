@@ -6,6 +6,7 @@ import com.swissclassic.mindflow_server.conversation.model.entity.ChatRoom;
 import com.swissclassic.mindflow_server.conversation.service.ChatLogService;
 import com.swissclassic.mindflow_server.conversation.service.ChatRoomService;
 import com.swissclassic.mindflow_server.conversation.service.ConversationSummaryService;
+import com.swissclassic.mindflow_server.conversation.service.MemoryService;
 import com.swissclassic.mindflow_server.mindmap.service.TopicService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,7 @@ public class ChatRoomController {
     private final ChatLogService chatLogService;
     private final ConversationSummaryService conversationSummaryService;
     private final TopicService topicService;
+    private final MemoryService memoryService;
 
     @GetMapping("my-rooms/{creatorId}")
     public ResponseEntity<List<ChatRoomResponse>> getChatRoomsByCreatorId(@PathVariable long creatorId) {
@@ -32,6 +34,7 @@ public class ChatRoomController {
     @GetMapping("messages/{chatRoomId}")
     public ResponseEntity<List<ChatLog>> getChatLogsByChatRoomId(@PathVariable long chatRoomId) {
         List<ChatLog> chatLogs = chatLogService.getMessagesByChatRoomId(chatRoomId);
+        memoryService.setMemory(chatRoomId);
         return ResponseEntity.ok(chatLogs); // 200 OK 응답과 함께 데이터 반환
     }
 
@@ -49,4 +52,11 @@ public class ChatRoomController {
 
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("book-mark/{roomId}")
+    public ResponseEntity<Void> changeBookMark(@PathVariable long roomId) {
+        chatRoomService.toggleStarredStatus(roomId);
+        return ResponseEntity.noContent().build();
+    }
+
 }

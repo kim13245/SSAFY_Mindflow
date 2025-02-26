@@ -1,9 +1,8 @@
 // Redux Toolkit의 기본 기능과 Redux Persist 관련 기능들을 import
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import { persistStore, persistReducer } from "redux-persist"
-import storage from "redux-persist/lib/storage" // localStorage를 사용하기 위한 storage
+import storage from "redux-persist/lib/storage/session" // localStorage를 사용하기 위한 storage
 import authReducer from "./slices/authSlice"
-
 
 // Redux Persist 설정
 const persistConfig = {
@@ -14,8 +13,7 @@ const persistConfig = {
 
 // 여러 리듀서를 하나로 합침
 const rootReducer = combineReducers({
-  auth: authReducer //, 인증 관련 상태 관리
-  
+  auth: authReducer, //, 인증 관련 상태 관리
 })
 
 // rootReducer를 persist로 감싸서 지속성 부여

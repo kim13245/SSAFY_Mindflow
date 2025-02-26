@@ -13,6 +13,9 @@ import com.swissclassic.mindflow_server.mindmap.model.entity.TopicRefs;
 import com.swissclassic.mindflow_server.mindmap.repository.TopicRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,16 +35,20 @@ public class TopicService {
     private final TopicRepository topicRepository;
     private final ConversationSummaryService conversationSummaryService;
 
+    private final MongoTemplate mongoTemplate;
+
 
     @Autowired
     public TopicService(ChatRoomService chatRoomService,
                         ChatLogService chatLogService,
                         TopicRepository topicRepository,
-                        ConversationSummaryService conversationSummaryService) {
+                        ConversationSummaryService conversationSummaryService,
+                        MongoTemplate mongoTemplate) {
         this.chatRoomService = chatRoomService;
         this.chatLogService = chatLogService;
         this.topicRepository = topicRepository;
         this.conversationSummaryService = conversationSummaryService;
+        this.mongoTemplate = mongoTemplate;
     }
 
     public TopicDTO getTopicByUserId(String userId) {
@@ -116,30 +123,23 @@ public class TopicService {
 
         log.info("-------------------------------------------------------------------------------");
 
-        // ChatController의 /choiceModel처럼 ConversationSummary 저장
-        try {
 
-            if (chatLog != null) {
-                ConversationSummary summary = new ConversationSummary();
-                summary.setChatRoomId(newChatRoomId);
-                summary.setTimestamp(String.valueOf(Instant.now()));
 
-                // /choiceModel처럼 User와 AI 대화 형식으로 저장
-                String summaryContent = String.format("User:%s\nAI:%s",
-                        chatLog.getQuestion(),
-                        chatLog.getAnswerSentences().stream()
-                                .map(AnswerSentence::getContent)
-                                .collect(Collectors.joining("\n"))
-                );
-                summary.setSummaryContent(summaryContent);
+        // MongoDB에서 이전 채팅방의 대화 요약본을 찾아서 복사하고 chatroomid를 갱신
+        ConversationSummary oldSummary = conversationSummaryService.findByChatRoomId(Long.parseLong(refs.getChat_room_id()));
+        if (oldSummary != null) {
+            ConversationSummary newSummary = new ConversationSummary();
+            newSummary.setChatRoomId(newChatRoomId);
+            newSummary.setSummaryContent(oldSummary.getSummaryContent());
+            newSummary.setTimestamp(Instant.now().toString());
 
-                // MongoDB의 conversation_summaries 컬렉션에 저장
-                conversationSummaryService.saveConversationSummary(summary);
-                log.info("Saved conversation summary for new chat room: {}", newChatRoomId);
-            }
-        } catch (Exception e) {
-            log.error("Error saving conversation summary", e);
+            conversationSummaryService.saveConversationSummary(newSummary);
+            log.info("Copied conversation summary from chat room {} to {}", refs.getChat_room_id(), newChatRoomId);
+        } else {
+            log.warn("No conversation summary found for chat room {}", refs.getChat_room_id());
         }
+                
+
 
         log.info("--------------------------------------------------------------------------");
 

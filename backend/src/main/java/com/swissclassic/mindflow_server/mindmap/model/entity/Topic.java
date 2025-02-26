@@ -33,4 +33,7 @@ public class Topic {
 
     @Property("creator_id")
     private Long creatorId;
+
+    @Property("chat_room_title")
+    private String chatRoomTitle;
 }
